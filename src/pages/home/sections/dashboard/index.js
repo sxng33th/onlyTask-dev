@@ -1,0 +1,1 @@
+//dashboard section with a lot of charts

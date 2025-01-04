@@ -1,0 +1,1 @@
+// independent store used by search bar
