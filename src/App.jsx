@@ -1,10 +1,14 @@
-import React from 'react'
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./common/header/header";
+import Todo from "/src/pages/todo/todo.js";
+import Profile from "/src/pages/profile/profile.js";
 
 export default function App() {
-  return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold text-center">Only Task</h1>
-    </div>
-  )
+    return (
+        <div>
+            <Header />
+            <Todo />
+            <Profile />
+        </div>
+    );
 }
-
