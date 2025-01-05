@@ -32,7 +32,7 @@ export default function Profile() {
                     </>
                 ) : (
                     <div className="flex flex-col items-center">
-                        <p>Welcome back, {user.email}!</p>
+                        <p>Welcome, {user.email}!</p>
                         <button
                             className="btn btn-primary bg-red-400 rounded-full p-3 w-40 mt-4"
                             onClick={() => supabase.auth.signOut()}

@@ -5,13 +5,18 @@ import { useState } from "react";
 export default function Todo() {
     const [task, setTask] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (task === "") return;
-        await createTodo(task);
-        setTask("");
-    };
+   const handleSubmit = async (e) => {
+       e.preventDefault();
+       if (task === "") return;
 
+       if (!user) {
+           console.error("User is not authenticated. Cannot create todo.");
+           return; 
+       }
+
+       await createTodo(task);
+       setTask("");
+   };
     return (
         <div>
 
