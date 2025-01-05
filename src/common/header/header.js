@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 
+
 export default function Header() {
     return (
      
             <div className="p-10 flex justify-between mx-10">
                 <div>
                     <Link to="/">
-                    <h1 className="text-3xl font-bold text-center text-slate-300">Only Task</h1>
+                    <div className="flex items-center gap-2 ">
+                    <img src="/logo.png" alt="logo" className="w-20" />
+                    <h1 className="text-3xl font-bold text-center text-slate-300">OnlyTask</h1>
+                    </div>
                     </Link>
                 </div>
 
