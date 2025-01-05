@@ -1,9 +1,22 @@
 
+import { supabase } from "/src/integrations/supabase/client.js";
 import { createTodo } from "/src/utils/todo.util.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Todo() {
     const [task, setTask] = useState("");
+    const [user, setUser] = useState(null);
+
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            setUser(user);
+        };
+        fetchUser();
+    }, []);
 
    const handleSubmit = async (e) => {
        e.preventDefault();
