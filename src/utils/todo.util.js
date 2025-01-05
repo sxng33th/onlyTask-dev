@@ -16,3 +16,8 @@ export const createTodo = async (task) => {
         ])
         .select();
 };
+
+export const getTodos = async () => {
+    const { data, error } = await supabase.from("todos").select("*");
+    return { data, error };
+};

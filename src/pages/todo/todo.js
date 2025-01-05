@@ -1,4 +1,5 @@
 
+import DisplayList from "./components/displayList";
 import { supabase } from "/src/integrations/supabase/client.js";
 import { createTodo } from "/src/utils/todo.util.js";
 import { useEffect, useState } from "react";
@@ -54,6 +55,7 @@ export default function Todo() {
                     </form>
                 </div>
             </div>
+            <DisplayList />
         </div>
     );
 }
