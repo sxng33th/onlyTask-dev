@@ -1,7 +1,10 @@
 import { supabase } from "/src/integrations/supabase/client.js";
 
 export const createTodo = async (task) => {
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const {
+        data: { user },
+        error: userError,
+    } = await supabase.auth.getUser();
 
     if (userError) throw userError;
 
@@ -10,8 +13,8 @@ export const createTodo = async (task) => {
         .insert([
             {
                 task,
-                completed:false,
-                user_id: user.id
+                completed: false,
+                user_id: user.id,
             },
         ])
         .select();
@@ -20,4 +23,9 @@ export const createTodo = async (task) => {
 export const getTodos = async () => {
     const { data, error } = await supabase.from("todos").select("*");
     return { data, error };
+};
+
+export const deleteTodo = async (id) => {
+    const { error } = await supabase.from("todos").delete().eq("id", id);
+     return { success: !error, error };
 };
