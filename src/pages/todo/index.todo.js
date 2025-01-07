@@ -4,9 +4,10 @@ import AddTask from "./components/addTask";
 import { supabase } from "/src/integrations/supabase/client.js";
 import { createTodo } from "/src/utils/todo.util.js";
 import { useEffect, useState } from "react";
+import useTodoStore from "../../store/todo.store";
 
 export default function Todo() {
-    const [todos, setTodos] = useState([]);
+    const { todos, addTodo, clearTodos } = useTodoStore();
     const [task, setTask] = useState("");
     const [user, setUser] = useState(null);
 
@@ -15,9 +16,17 @@ export default function Todo() {
         if (error) {
             console.error("Error fetching todos:", error);
         } else {
-            setTodos(data);
+            clearTodos();
+            data.forEach(todo => {
+                if (todo && todo.id && todo.task) {
+                    addTodo(todo);
+                } else {
+                    console.warn("Invalid todo structure:", todo);
+                }
+            });
         }
     };
+
     useEffect(() => {
         const fetchUser = async () => {
             const {
@@ -31,17 +40,26 @@ export default function Todo() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (task === "") return;
+        if (task.trim() === "") return;
 
         if (!user) {
             console.error("User is not authenticated. Cannot create todo.");
             return;
         }
 
-        await createTodo(task);
-        setTask("");
-        fetchTodos();
+        try {
+            const newTodo = await createTodo(task);
+            if (newTodo && newTodo.id && newTodo.task) {
+                addTodo(newTodo);
+                setTask("");
+            } else {
+                console.error("Invalid new todo structure:", newTodo);
+            }
+        } catch (error) {
+            console.error("Error creating todo:", error);
+        }
     };
+
     return (
         <div>
             <AddTask task={task} setTask={setTask} handleSubmit={handleSubmit} />
