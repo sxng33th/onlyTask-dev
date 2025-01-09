@@ -69,7 +69,7 @@ export default function DisplayList() {
                         )
                     ))
                 ) : (
-                    <li className="text-red-500">No todos available</li>
+                    <li className="text-slate-300">No todos available</li>
                 )}
             </ol>
         </div>

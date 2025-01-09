@@ -27,7 +27,7 @@ export default function SignUpComponent() {
             <h2 className="text-slate-300 text-2xl font-bold mb-4 text-center">Sign Up</h2>
             <div>
                 <form onSubmit={handleSubmit}>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 text-black">
                         <input
                             className="input input-bordered p-3 rounded-full text-center max-w-xs shadow-inner bg-slate-200"
                             type="email"

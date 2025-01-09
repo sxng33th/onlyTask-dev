@@ -36,7 +36,7 @@ const SignInComponent = () => {
         <div className="mt-10">
             <h2 className="text-slate-300 text-2xl font-bold mb-4 text-center">Sign In</h2>
             <form onSubmit={handleSubmit}>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-teal-600">
                     <input
                         className="input input-bordered p-3 rounded-full text-center max-w-xs shadow-inner bg-slate-200"
                         type="email"
